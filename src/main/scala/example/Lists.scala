@@ -42,9 +42,13 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
     def max(xs: List[Int]): Int = {
-        def maxAux(xsAux: List[Int], comparable: Int): Int = {
+      if(xs.isEmpty) return 0
+      maxAux(xs.tail, xs.head)
+    }
 
-        }
-        maxAux(xs.tail, xs.head)
+    def maxAux(xsAux: List[Int], comparableMax: Int): Int = {
+        if(xsAux.isEmpty) return comparableMax
+        if(xsAux.head > comparableMax) return maxAux(xsAux.tail, xsAux.head)
+        maxAux(xsAux.tail, comparableMax)
     }
 }
