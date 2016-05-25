@@ -118,7 +118,9 @@ import org.scalatest.junit.JUnitRunner
   }
 
   test("max of an empty list"){
-    assert(max(List()) === 0)
+      intercept[NoSuchElementException] {
+          max(List())
+      }
   }
 
   test("sum of one number"){
