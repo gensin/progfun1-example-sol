@@ -47,8 +47,12 @@ object Lists {
     }
 
     def maxAux(xsAux: List[Int], comparableMax: Int): Int = {
-        if(xsAux.isEmpty) return comparableMax
-        if(xsAux.head > comparableMax) return maxAux(xsAux.tail, xsAux.head)
-        maxAux(xsAux.tail, comparableMax)
+        if(xsAux.isEmpty) {
+            comparableMax
+        } else if(xsAux.head > comparableMax){
+            maxAux(xsAux.tail, xsAux.head)
+        } else{
+            maxAux(xsAux.tail, comparableMax)
+        }
     }
 }
