@@ -1,5 +1,6 @@
-//Lesson 2.1 exercise
-object exercise2 {
+object exercises {
+
+    //Lesson 2.1
     def sum(f: Int => Int, a: Int, b: Int): Int = {
         def loop(a: Int, acc: Int): Int = {
             if (a > b) acc
@@ -9,4 +10,26 @@ object exercise2 {
     }
 
     sum(x => x * x, 3, 5)
+
+    //Lesson 2.2 exercise 1
+//    def product(f: Int => Int)(a: Int, b: Int): Int = {
+//        if(a > b) 1
+//        else f(a) * product(f)(a + 1, b)
+//    }
+    product(x => x * x)(3, 4)
+
+    //Lesson 2.2 exercise 2
+    def fact(n: Int) = {
+        product(x => x)(1,n)
+    }
+    fact(4)
+
+    //Lesson 2.2 exercise 3
+    def mapReduce(f: Int => Int, combine: (Int, Int) => Int, zero: Int)(a: Int, b: Int): Int = {
+        if(a > b) zero
+        else combine(f(a), mapReduce(f, combine, zero)(a + 1, b))
+    }
+
+    def product(f: Int => Int)(a: Int, b: Int): Int = mapReduce(f, (x, y) => x * y, 1)(a, b)
 }
+
